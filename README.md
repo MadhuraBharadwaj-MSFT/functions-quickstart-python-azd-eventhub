@@ -151,7 +151,7 @@ This sample contains two functions that work together:
 
 Runs every 10 seconds and generates 3-8 realistic news articles, then sends them to Event Hubs. The key configuration:
 
-- **Timer**: `0,10,20,30,40,50 * * * * *` (every 10 seconds)
+- **Timer**: `*/10 * * * * *` (every 10 seconds)
 - **Output**: Event Hubs output binding to "news" hub
 - **Articles**: Realistic content with authors, sources, categories
 
@@ -260,6 +260,21 @@ When using VNet integration:
 - All traffic flows through private endpoints within the VNet
 - Client IP must be added to Event Hubs network rules for local development (done automatically by `addclientip` scripts)
 - Managed Identity is used for authentication between services
+
+## Clean Up Resources
+
+When you're done testing the sample, you can delete all Azure resources to avoid incurring charges:
+
+```bash
+azd down
+```
+
+This will:
+- Delete all Azure resources created by `azd provision`
+- Remove the resource group
+- Clean up the local environment configuration
+
+> **Note:** This action is irreversible. Make sure you no longer need the resources before running this command.
 
 ## Resources
 

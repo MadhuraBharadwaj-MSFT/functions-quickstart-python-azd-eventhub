@@ -41,7 +41,7 @@ class NewsArticle:
         }
 
 # Timer trigger - generates news every 10 seconds
-@app.timer_trigger(schedule="0,10,20,30,40,50 * * * * *", arg_name="timer", run_on_startup=True)
+@app.timer_trigger(schedule="*/10 * * * * *", arg_name="timer", run_on_startup=True)
 @app.event_hub_output(arg_name="event", event_hub_name="news", connection="EventHubConnection")
 def NewsGenerator(timer: func.TimerRequest, event: func.Out[str]) -> None:
     """Generate realistic news articles and send to Event Hub"""
